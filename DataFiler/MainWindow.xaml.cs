@@ -39,29 +39,28 @@ namespace DataFiler
 		{
 			// Load data in gridview
 
+
+			// Get data from JSON file?
+
+
+			// Create Movie objects to put in gridview
+
 			List<Movie> lMovies = new List<Movie>();
 			for (int i = 0; i < AllVideoFiles.Count; i++)
 			{
 				var video = AllVideoFiles[i];
 
 				string name = video.Name.Replace(video.Extension, String.Empty);
-			
+
 				lMovies.Add(new Movie
 				{
 					Name = name,
 					ParentFolder = AllVideoFiles[i].DirectoryName,
 				});
 			}
-			
+
+			// Add to gridview
 			dataGrid.ItemsSource = lMovies;
-
-
-			// Load Detaisl?
-
-
-			// Load ComboBox
-			
-
 		}
 
 		private void LoadFiles()
@@ -80,7 +79,8 @@ namespace DataFiler
 
 		private void NumberValidator(object sender, TextCompositionEventArgs e)
 		{
-
+			Regex regex = new Regex("[^0-9]+");
+			e.Handled = regex.IsMatch(e.Text);
 		}
 	}
 }
